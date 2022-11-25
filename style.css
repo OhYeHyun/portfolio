@@ -4,8 +4,8 @@
   --color-whilte: #ffffff;
   --color-light-whilte: #eeeeee;
   --color-dark-whilte: #bdbdbd;
-  --color-pink: #fe918d;
-  --color-dark-pink: #ff6863;
+  --color-puple: #68269a;
+  --color-dark-puple: #4d0088;
   --color-dark-grey: #616161;
   --color-light-grey: #7c7979;
   --color-blue: #73aace;
@@ -84,7 +84,7 @@ p {
 #navbar {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-pink);
+  background-color: var(--color-puple);
   align-items: center;
   color: var(--color-whilte);
   padding: 16px;
@@ -95,13 +95,20 @@ p {
 }
 
 .navbar__logo {
+  display: flex;
   font-size: var(--font-medium);
   font-weight: var(--weight-semi-bold);
 }
 
+.navbar-picture {
+  height: 38px;
+  width: 38px;
+  margin: 0 8px;
+}
+
 .navbar__menu__item {
   padding: 8px 12px;
-  margin: 0 4px;
+  margin: 0 6px;
   cursor: pointer;
   border-radius: var(--size-border-radius);
 }
@@ -111,5 +118,11 @@ p {
 }
 
 .navbar__menu__item:hover {
-  background-color: var(--color-dark-pink);
+  background-color: var(--color-dark-puple);
+  font-weight: bolder;
+}
+
+/* Home */
+#home {
+  background: url("imgs/home-background.png");
 }
