@@ -4,9 +4,10 @@
   --color-whilte: #ffffff;
   --color-light-whilte: #eeeeee;
   --color-dark-whilte: #bdbdbd;
-  --color-light-puple: #ecd4ff;
-  --color-puple: #68269a;
-  --color-dark-puple: #4d0088;
+  --color-light-puple: #f8dae2;
+  --color-dark-puple: #773976;
+  --color-puple: #8d4e8c;
+  --color-little-dark-puple: #9e619d;
   --color-dark-grey: #616161;
   --color-light-grey: #7c7979;
   --color-blue: #73aace;
@@ -87,7 +88,7 @@ p {
   justify-content: space-between;
   background-color: var(--color-puple);
   align-items: center;
-  color: var(--color-whilte);
+  color: var(--color-light-puple);
   padding: 16px;
 }
 
@@ -99,12 +100,17 @@ p {
   display: flex;
   font-size: var(--font-medium);
   font-weight: var(--weight-semi-bold);
+  padding: 8px 12px;
+  background-color: var(--color-little-dark-puple);
+  border-bottom: 7px solid var(--color-dark-puple);
+  border-right: 7px solid var(--color-dark-puple);
+  border-radius: var(--size-border-radius);
 }
 
 .navbar-picture {
   height: 50px;
   width: 50px;
-  margin: 0 8px;
+  margin: 0 8px 0 0;
 }
 
 .navbar__menu__item {
@@ -112,20 +118,29 @@ p {
   margin: 0 6px;
   cursor: pointer;
   border-radius: var(--size-border-radius);
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid transparent;
 }
 
 .navbar__menu__item.active {
-  border: 2px solid var(--color-whilte);
+  color: var(--color-whilte);
+  border-bottom: 5px solid var(--color-dark-puple);
+  border-right: 5px solid var(--color-dark-puple);
+  background-color: var(--color-little-dark-puple);
 }
 
 .navbar__menu__item:hover {
-  background-color: var(--color-dark-puple);
-  font-weight: bolder;
-  letter-spacing: -0.678px;
-  color: var(--color-light-puple);
+  background-color: var(--color-little-dark-puple);
+  /* font-weight: bolder; */
+  /* letter-spacing: -0.678px; */
+  color: var(--color-whilte);
+  border-bottom: 5px solid var(--color-dark-puple);
+  border-right: 5px solid var(--color-dark-puple);
 }
 
 /* Home */
 #home {
-  background: url("imgs/home-background.png");
+  background: url("imgs/home-background.png") center/cover no-repeat;
+  padding: 40px;
+  text-align: center;
 }
