@@ -168,9 +168,11 @@ p {
 }
 
 .navbar__menu__item:active {
-  border-bottom: 0.5px solid var(--color-dark-puple);
-  border-right: 0.5px solid var(--color-dark-puple);
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid transparent;
   transition: all var(--animation-duration-short) ease;
+  box-shadow: -3px -3px var(--color-dark-puple);
+  color: var(--color-orange);
 }
 
 /* Home */
@@ -218,7 +220,7 @@ p {
 .about__majors {
   display: flex;
   justify-content: space-between;
-  margin: 80px 0;
+  margin: 80px 80px;
 }
 
 .major {
