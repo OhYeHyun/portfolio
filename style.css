@@ -417,6 +417,7 @@ p {
   border-radius: var(--size-border-radius);
   font-size: var(--font-regular);
   padding: 8px 48px;
+  margin: 5px;
 }
 
 .category__btn.active,
