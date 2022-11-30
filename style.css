@@ -1,14 +1,16 @@
 /* Global */
+
 :root {
   /* Color */
+
   --color-whilte: #ffffff;
   --color-light-whilte: #eeeeee;
   --color-dark-whilte: #bdbdbd;
   --color-light-puple: #f8dae2;
-  --color-pink: #e422ba;
+  --color-pink: #df3f69;
   --color-dark-puple: #773976;
   --color-puple: #8d4e8c;
-  --color-little-dark-puple: #c463c2;
+  --color-little-dark-puple: #9e619d;
   --color-grey: #616161;
   --color-light-light-grey: #b8b8b8;
   --color-light-grey: #7c7979;
@@ -20,6 +22,7 @@
   --color-black: #000000;
 
   /* Font size */
+
   --font-large: 48px;
   --font-medium: 28px;
   --font-regular: 18px;
@@ -27,19 +30,23 @@
   --font-micro: 14px;
 
   /* Font weight */
+
   --weight-bold: 700;
   --weight-semi-bold: 600;
   --weight-regular: 400;
 
   /* Size */
+
   --size-border-radius: 4px;
 
   /* Annimation */
+
   --animation-duration: 250ms;
   --animation-duration-short: 50ms;
 }
 
 /* Universal tags */
+
 * {
   box-sizing: border-box;
 }
@@ -72,6 +79,7 @@ button {
 }
 
 /* Typography */
+
 h1 {
   font-size: var(--font-large);
   font-weight: var(--weight-bold);
@@ -119,7 +127,12 @@ p {
 
 .navbar__logo:hover .navbar-picture {
   transition: all var(--animation-duration) ease-in;
-  transform: scale(1.2);
+  transform: rotate(180deg);
+}
+
+.navbar__logo:not(:hover) .navbar-picture {
+  transition: all var(--animation-duration) ease-in;
+  transform: rotate(-180deg);
 }
 
 .navbar__logo {
@@ -183,6 +196,7 @@ p {
 }
 
 /* Home */
+
 #home {
   background: url("imgs/home-background.png") center/cover no-repeat;
   padding: 40px;
@@ -523,6 +537,7 @@ p {
 
 .testimonial__speech-bubble {
   padding: 18px;
+  width: 100%;
   background-color: var(--color-whilte);
   border-radius: var(--size-border-radius);
 }
@@ -533,4 +548,30 @@ p {
 
 .testimonial__speech-bubble a {
   color: var(--color-pink);
+}
+
+/* Contack */
+
+#contack {
+  background-color: var(--color-puple);
+}
+
+.contact__title,
+.contact__email,
+.contact__rights {
+  color: var(--color-whilte);
+}
+
+.contact__title {
+  margin: 32px 0;
+}
+
+.contact__links {
+  font-size: var(--font-large);
+  margin: 24px 0;
+}
+
+.contact__links i:hover {
+  transform: scale(1.1);
+  color: var(--color-light-yellow);
 }
