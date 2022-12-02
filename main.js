@@ -16,9 +16,17 @@ const navbarMenu = document.querySelector(".navbar__menu");
 navbarMenu.addEventListener("click", (event) => {
   const target = event.target;
   const link = target.dataset.link;
+  const scrollMove = document.querySelector(link);
+  const scrollValue =
+    scrollMove.offsetTop - navHeight < 0
+      ? 0
+      : scrollMove.offsetTop - navHeight + 33;
   if (link == null) {
     return;
   }
-  const scrollTo = document.querySelector(link);
-  scrollTo.scrollIntoView({ behavior: "smooth" });
+  window.scrollTo({
+    top: scrollValue,
+    left: 0,
+    behavior: "smooth",
+  });
 });
