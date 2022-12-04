@@ -7,7 +7,7 @@
   --color-light-whilte: #eeeeee;
   --color-dark-whilte: #bdbdbd;
   --color-light-puple: #f8dae2;
-  --color-pink: #df3f69;
+  --color-pink: #f36289;
   --color-dark-puple: #773976;
   --color-puple: #8d4e8c;
   --color-little-dark-puple: #9b599a;
@@ -20,6 +20,7 @@
   --color-dark-orange: #ff5100;
   --color-orange: #feb546;
   --color-black: #000000;
+  --color-hotpink: #ff009d;
 
   /* Font size */
 
@@ -263,11 +264,45 @@ p {
 
 .navbar__toggle-btn {
   position: absolute;
-  top: 25px;
+  top: 40px;
   right: 32px;
   font-size: 24px;
   color: var(--color-whilte);
   display: none;
+}
+
+.navbar__toggle-btn:hover {
+  transform: scale(1.2);
+  color: var(--color-puple);
+}
+
+#navbar.navbar--dark .navbar__toggle-btn {
+  top: 25px;
+  right: 32px;
+  color: var(--color-light-puple);
+}
+
+#navbar.navbar--dark .navbar__toggle-btn:hover {
+  color: var(--color-whilte);
+}
+
+.navbar__arrowUp-btn {
+  position: fixed;
+  color: var(--color-pink);
+  bottom: 25px;
+  right: 32px;
+  font-size: 60px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar__arrowUp-btn:hover {
+  color: var(--color-orange);
+  transform: scale(1.2);
+}
+
+.navbar__arrowUp-btn:active {
+  color: var(--color-dark-orange);
 }
 
 /* Home */
@@ -300,6 +335,15 @@ p {
   padding: 8px 12px;
   border: 2px solid var(--color-dark-puple);
   border-radius: var(--size-border-radius);
+}
+
+.home__contact:hover {
+  background-color: rgba(255, 255, 255, 0.822);
+  background: 0.5;
+}
+
+.home__contact:active {
+  transform: scale(1.1);
 }
 
 /* Section common */
@@ -492,7 +536,7 @@ p {
   border: 2px solid var(--color-dark-whilte);
   border-radius: var(--size-border-radius);
   font-size: var(--font-regular);
-  padding: 8px 29px 8px 48px;
+  padding: 8px 19px 8px 48px;
   margin: 5px;
 }
 

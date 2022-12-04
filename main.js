@@ -16,7 +16,6 @@ const navbarMenu = document.querySelector(".navbar__menu");
 navbarMenu.addEventListener("click", (event) => {
   const target = event.target;
   const link = target.dataset.link;
-  console.log(link);
   if (link == null) {
     return;
   }
@@ -32,9 +31,37 @@ homeContactBtn.addEventListener("click", () => {
 // Make home slowly fade to transparent asthe window scrolls down
 const home = document.querySelector(".home__container");
 const homeHeight = home.getBoundingClientRect().height;
-const homeTransparent = document.querySelector(".home--transparent");
 document.addEventListener("scroll", () => {
-  home.style.opacity = 1 - window.scrollY / homeHeight;
+  home.style.opacity = 1.3 - window.scrollY / homeHeight;
+});
+document.addEventListener("scroll", () => {
+  homeContactBtn.style.opacity = 1.3 - window.scrollY / homeHeight;
+});
+homeContactBtn.addEventListener("mouseover", () => {
+  homeContactBtn.style.opacity = 1;
+});
+homeContactBtn.addEventListener("mouseout", () => {
+  homeContactBtn.style.opacity = 1.3 - window.scrollY / homeHeight;
+});
+
+// Arrow-up button on Navbar
+const arrowUp = document.querySelector(".navbar__arrowUp-btn");
+document.addEventListener("scroll", () => {
+  arrowUp.style.opacity = window.scrollY / navHeight;
+  if (window.scrollY > 0) {
+    arrowUp.style.pointerEvents = "auto";
+  } else {
+    arrowUp.style.pointerEvents = "none";
+  }
+});
+arrowUp.addEventListener("click", () => {
+  scrollIntoView("#home");
+});
+arrowUp.addEventListener("mouseover", () => {
+  arrowUp.style.opacity = 1;
+});
+arrowUp.addEventListener("mouseout", () => {
+  arrowUp.style.opacity = window.scrollY / navHeight;
 });
 
 function scrollIntoView(selector) {
