@@ -30,18 +30,19 @@ homeContactBtn.addEventListener("click", () => {
 
 // Make home slowly fade to transparent asthe window scrolls down
 const home = document.querySelector(".home__container");
-const homeHeight = home.getBoundingClientRect().height;
+const about = document.querySelector(".about__container");
+const aboutTop = about.getBoundingClientRect().top;
 document.addEventListener("scroll", () => {
-  home.style.opacity = 1.3 - window.scrollY / homeHeight;
+  home.style.opacity = 1 - window.scrollY / aboutTop;
 });
 document.addEventListener("scroll", () => {
-  homeContactBtn.style.opacity = 1.3 - window.scrollY / homeHeight;
+  homeContactBtn.style.opacity = 1 - window.scrollY / aboutTop;
 });
 homeContactBtn.addEventListener("mouseover", () => {
   homeContactBtn.style.opacity = 1;
 });
 homeContactBtn.addEventListener("mouseout", () => {
-  homeContactBtn.style.opacity = 1.3 - window.scrollY / homeHeight;
+  homeContactBtn.style.opacity = 1 - window.scrollY / aboutTop;
 });
 
 // Arrow-up button on Navbar
@@ -74,13 +75,18 @@ workBtnContainer.addEventListener("click", (e) => {
   if (filter == null) {
     return;
   }
-  projects.forEach((project) => {
-    if (filter === "*" || filter === project.dataset.sort) {
-      project.classList.remove("invisible");
-    } else {
-      project.classList.add("invisible");
-    }
-  });
+  projectContainer.classList.add("anim-out");
+
+  setTimeout(() => {
+    projects.forEach((project) => {
+      if (filter === "*" || filter === project.dataset.sort) {
+        project.classList.remove("invisible");
+      } else {
+        project.classList.add("invisible");
+      }
+    });
+    projectContainer.classList.remove("anim-out");
+  }, 300);
 });
 
 function scrollIntoView(selector) {
