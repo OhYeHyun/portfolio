@@ -13,12 +13,16 @@ document.addEventListener("scroll", () => {
 
 // Handle scrolling when tapping on the navbar menu
 const navbarMenu = document.querySelector(".navbar__menu");
-navbarMenu.addEventListener("click", (event) => {
-  const target = event.target;
+
+navbarMenu.addEventListener("click", (e) => {
+  const target = e.target;
   const link = target.dataset.link;
   if (link == null) {
     return;
   }
+  const selected = document.querySelector(".navbar__menu__item.selected");
+  selected.classList.remove("selected");
+  e.target.classList.add("selected");
   scrollIntoView(link);
 });
 
@@ -33,22 +37,26 @@ const home = document.querySelector(".home__container");
 const about = document.querySelector(".about__container");
 const aboutTop = about.getBoundingClientRect().top;
 document.addEventListener("scroll", () => {
-  home.style.opacity = 1 - window.scrollY / aboutTop;
+  home.style.opacity =
+    1 - window.scrollY / aboutTop >= 0 ? 1 - window.scrollY / aboutTop : 0;
 });
 document.addEventListener("scroll", () => {
-  homeContactBtn.style.opacity = 1 - window.scrollY / aboutTop;
+  homeContactBtn.style.opacity =
+    1 - window.scrollY / aboutTop >= 0 ? 1 - window.scrollY / aboutTop : 0;
 });
 homeContactBtn.addEventListener("mouseover", () => {
   homeContactBtn.style.opacity = 1;
 });
 homeContactBtn.addEventListener("mouseout", () => {
-  homeContactBtn.style.opacity = 1 - window.scrollY / aboutTop;
+  homeContactBtn.style.opacity =
+    1 - window.scrollY / aboutTop >= 0 ? 1 - window.scrollY / aboutTop : 0;
 });
 
 // Arrow-up button on Navbar
 const arrowUp = document.querySelector(".navbar__arrowUp-btn");
 document.addEventListener("scroll", () => {
-  arrowUp.style.opacity = window.scrollY / navHeight;
+  arrowUp.style.opacity =
+    window.scrollY / navHeight >= 0 ? window.scrollY / navHeight : 0;
   if (window.scrollY > 0) {
     arrowUp.style.pointerEvents = "auto";
   } else {
@@ -65,7 +73,7 @@ arrowUp.addEventListener("mouseout", () => {
   arrowUp.style.opacity = window.scrollY / navHeight;
 });
 
-// Projects
+// Project Filtering
 const workBtnContainer = document.querySelector(".work__categories");
 const projectContainer = document.querySelector(".work__projects");
 const projects = document.querySelectorAll(".project");
@@ -75,6 +83,13 @@ workBtnContainer.addEventListener("click", (e) => {
   if (filter == null) {
     return;
   }
+  // Remove selection from the previous item and slect the new one
+  const selected = document.querySelector(".category__btn.selected");
+  selected.classList.remove("selected");
+  const target =
+    e.target.nodeName === "BUTTON" ? e.target : e.target.parentNode;
+  target.classList.add("selected");
+
   projectContainer.classList.add("anim-out");
 
   setTimeout(() => {
