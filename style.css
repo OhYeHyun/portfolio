@@ -275,7 +275,7 @@ p {
 
 .navbar__arrowUp-btn {
   position: fixed;
-  color: var(--color-pink);
+  color: var(--color-puple);
   bottom: 25px;
   right: 32px;
   font-size: 60px;
@@ -284,12 +284,12 @@ p {
 }
 
 .navbar__arrowUp-btn:hover {
-  color: var(--color-orange);
+  color: var(--color-pink);
   transform: scale(1.2);
 }
 
 .navbar__arrowUp-btn:active {
-  color: var(--color-dark-orange);
+  color: var(--color-orange);
 }
 
 /* Home */
@@ -299,6 +299,7 @@ p {
   padding: 40px;
   padding-top: 180px;
   text-align: center;
+  background-attachment: fixed;
 }
 
 .home__avatar {
@@ -514,7 +515,6 @@ p {
 }
 
 /* Work */
-
 .work__categories {
   margin: 40px;
 }
@@ -675,13 +675,20 @@ p {
 /* Contact */
 
 #contact {
-  background-color: var(--color-puple);
+  background: url("imgs/home-background.png") center/cover no-repeat;
+  background-attachment: fixed;
+  padding: 150px 50px;
 }
 
 .contact__title,
 .contact__email,
 .contact__rights {
   color: var(--color-whilte);
+}
+
+.contact__email:hover {
+  color: var(--color-dark-puple);
+  transition: all var(--animation-duration) ease;
 }
 
 .contact__title {
@@ -694,8 +701,9 @@ p {
 }
 
 .contact__links i:hover {
-  transform: scale(1.1);
-  color: var(--color-light-yellow);
+  transform: scale(1.3);
+  color: var(--color-dark-puple);
+  transition: all var(--animation-duration) ease;
 }
 
 .contact__links i:active {
