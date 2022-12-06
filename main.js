@@ -65,6 +65,20 @@ document.addEventListener("scroll", () => {
 });
 arrowUp.addEventListener("click", () => {
   scrollIntoView("#home");
+
+  // Initialization when click Arrow-up button
+  const selectedNav = document.querySelector(".navbar__menu__item.selected");
+  const homeBtn = navbarMenu.childNodes.item(1);
+  selectedNav.classList.remove("selected");
+  homeBtn.classList.add("selected");
+
+  const selectedCate = document.querySelector(".category__btn.selected");
+  const allBtn = workBtnContainer.childNodes.item(1);
+  selectedCate.classList.remove("selected");
+  allBtn.classList.add("selected");
+  projects.forEach((project) => {
+    project.classList.remove("invisible");
+  });
 });
 arrowUp.addEventListener("mouseover", () => {
   arrowUp.style.opacity = 1;
