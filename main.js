@@ -4,6 +4,8 @@
 const nav = document.querySelector("#navbar");
 const navHeight = nav.getBoundingClientRect().height;
 document.addEventListener("scroll", () => {
+  navbarMenu.classList.remove("open");
+
   if (window.scrollY > navHeight) {
     nav.classList.add("navbar--dark");
   } else {
@@ -20,10 +22,18 @@ navbarMenu.addEventListener("click", (e) => {
   if (link == null) {
     return;
   }
-  const selected = document.querySelector(".navbar__menu__item.selected");
-  selected.classList.remove("selected");
-  e.target.classList.add("selected");
+  navbarMenu.classList.remove("open");
   scrollIntoView(link);
+});
+
+// button selected when click items
+selectedBtn(".navbar__menu", ".navbar__menu__item");
+selectedBtn(".work__categories", ".category__btn");
+
+// Nav toggleBtn for small screen
+const toggleBtn = document.querySelector(".navbar__toggle-btn");
+toggleBtn.addEventListener("click", () => {
+  navbarMenu.classList.toggle("open");
 });
 
 // Handle click on "contact me" button on home
@@ -76,6 +86,7 @@ arrowUp.addEventListener("click", () => {
   const allBtn = workBtnContainer.childNodes.item(1);
   selectedCate.classList.remove("selected");
   allBtn.classList.add("selected");
+
   projects.forEach((project) => {
     project.classList.remove("invisible");
   });
@@ -97,14 +108,6 @@ workBtnContainer.addEventListener("click", (e) => {
   if (filter == null) {
     return;
   }
-
-  // Remove selection from the previous item and slect the new one
-  const selected = document.querySelector(".category__btn.selected");
-  selected.classList.remove("selected");
-  const target =
-    e.target.nodeName === "BUTTON" ? e.target : e.target.parentNode;
-  target.classList.add("selected");
-
   projectContainer.classList.add("anim-out");
 
   setTimeout(() => {
@@ -129,5 +132,20 @@ function scrollIntoView(selector) {
     top: scrollValue,
     left: 0,
     behavior: "smooth",
+  });
+}
+
+function selectedBtn(parentClass, childClass) {
+  const parent = document.querySelector(parentClass);
+  parent.addEventListener("click", (e) => {
+    const selected = document.querySelector(childClass + ".selected");
+    if (e.target.nodeName === "BUTTON" || e.target.parentNode === "BUTTON") {
+      const target =
+        e.target.nodeName === "BUTTON" ? e.target : e.target.parentNode;
+      target.classList.add("selected");
+    } else {
+      e.target.classList.add("selected");
+    }
+    selected.classList.remove("selected");
   });
 }
