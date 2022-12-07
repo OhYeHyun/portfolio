@@ -122,6 +122,39 @@ workBtnContainer.addEventListener("click", (e) => {
   }, 300);
 });
 
+const homeTop = document.querySelector("#home").offsetTop;
+const aboutTop1 = document.querySelector("#about").offsetTop;
+const skillsTop = document.querySelector("#skills").offsetTop;
+const workTop = document.querySelector("#work").offsetTop;
+const testimonialsTop = document.querySelector("#testimonials").offsetTop;
+const contactTop = document.querySelector("#contact").offsetTop;
+
+// const topData = [
+//   homeTop,
+//   aboutTop1,
+//   skillsTop,
+//   workTop,
+//   testimonialsTop,
+//   contactTop,
+// ];
+
+// document.addEventListener("scroll", () => {
+//   for (let i = 0; i <= topData.length; i++) {
+//     if (window.scrollY === topData[i]) {
+//       console.log("높이" + topData[i]);
+//     }
+//   }
+//   // const selectedNav = document.querySelector(
+//   //   ".navbar__menu__item.selected"
+//   // );
+//   // selectedNav.classList.remove("selected")
+// });
+
+const selectedNav = document.querySelector(".navbar__menu__item.selected");
+const homeBtn = navbarMenu.childNodes.item(1);
+selectedNav.classList.remove("selected");
+homeBtn.classList.add("selected");
+
 function scrollIntoView(selector) {
   const scrollMove = document.querySelector(selector);
   const scrollValue =
