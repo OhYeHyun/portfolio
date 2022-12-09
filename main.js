@@ -48,21 +48,21 @@ const about = document.querySelector(".about__container");
 const aboutTop = about.getBoundingClientRect().top;
 document.addEventListener("scroll", () => {
   home.style.opacity =
-    1 - window.scrollY / aboutTop >= 0 ? 1.15 - window.scrollY / aboutTop : 0;
+    1 - window.scrollY / aboutTop >= 0 ? 1.1 - window.scrollY / aboutTop : 0;
 });
 document.addEventListener("scroll", () => {
   homeContactBtn.style.opacity =
-    1 - window.scrollY / aboutTop >= 0 ? 1.15 - window.scrollY / aboutTop : 0;
+    1 - window.scrollY / aboutTop >= 0 ? 1.1 - window.scrollY / aboutTop : 0;
 });
 homeContactBtn.addEventListener("mouseover", () => {
   homeContactBtn.style.opacity = 1;
 });
 homeContactBtn.addEventListener("mouseout", () => {
   homeContactBtn.style.opacity =
-    1 - window.scrollY / aboutTop >= 0 ? 1.15 - window.scrollY / aboutTop : 0;
+    1 - window.scrollY / aboutTop >= 0 ? 1.1 - window.scrollY / aboutTop : 0;
 });
 
-// Arrow-up button on Navbar
+// Transparent Arrow-up button on Navbar
 const arrowUp = document.querySelector(".navbar__arrowUp-btn");
 document.addEventListener("scroll", () => {
   arrowUp.style.opacity =
@@ -73,10 +73,11 @@ document.addEventListener("scroll", () => {
     arrowUp.style.pointerEvents = "none";
   }
 });
+
+// Initialization when click Arrow-up button
 arrowUp.addEventListener("click", () => {
   scrollIntoView("#home");
 
-  // Initialization when click Arrow-up button
   const selectedNav = document.querySelector(".navbar__menu__item.selected");
   const homeBtn = navbarMenu.childNodes.item(1);
   selectedNav.classList.remove("selected");
@@ -122,46 +123,6 @@ workBtnContainer.addEventListener("click", (e) => {
   }, 300);
 });
 
-const homeTop = document.querySelector("#home").offsetTop;
-const aboutTop1 = document.querySelector("#about").offsetTop;
-const skillsTop = document.querySelector("#skills").offsetTop;
-const workTop = document.querySelector("#work").offsetTop;
-const testimonialsTop = document.querySelector("#testimonials").offsetTop;
-const contactTop = document.querySelector("#contact").offsetTop;
-
-const selectedNav = document.querySelector(".navbar__menu__item.selected");
-const homeBtn = navbarMenu.childNodes.item(1);
-selectedNav.classList.remove("selected");
-homeBtn.classList.add("selected");
-
-function scrollIntoView(selector) {
-  const scrollMove = document.querySelector(selector);
-  const scrollValue =
-    scrollMove.offsetTop - navHeight + 33 < 0
-      ? 0
-      : scrollMove.offsetTop - navHeight + 33;
-  window.scrollTo({
-    top: scrollValue,
-    left: 0,
-    behavior: "smooth",
-  });
-}
-
-function selectedBtn(parentClass, childClass) {
-  const parent = document.querySelector(parentClass);
-  parent.addEventListener("click", (e) => {
-    const selected = document.querySelector(childClass + ".selected");
-    if (e.target.nodeName === "BUTTON" || e.target.parentNode === "BUTTON") {
-      const target =
-        e.target.nodeName === "BUTTON" ? e.target : e.target.parentNode;
-      target.classList.add("selected");
-    } else {
-      e.target.classList.add("selected");
-    }
-    selected.classList.remove("selected");
-  });
-}
-
 const sectionIds = [
   "#home",
   "#about",
@@ -178,12 +139,6 @@ const navItems = sectionIds.map((id) =>
 
 let selectedNavIndex = 0;
 let selectedNavItem = navItems[0];
-
-function selectNavItem(selected) {
-  selectedNavItem.classList.remove("selected");
-  selectedNavItem = selected;
-  selectedNavItem.classList.add("selected");
-}
 
 const observerOptions = {
   root: null,
@@ -220,3 +175,37 @@ window.addEventListener("scroll", () => {
   }
   selectNavItem(navItems[selectedNavIndex]);
 });
+
+function selectNavItem(selected) {
+  selectedNavItem.classList.remove("selected");
+  selectedNavItem = selected;
+  selectedNavItem.classList.add("selected");
+}
+
+function scrollIntoView(selector) {
+  const scrollMove = document.querySelector(selector);
+  const scrollValue =
+    scrollMove.offsetTop - navHeight + 33 < 0
+      ? 0
+      : scrollMove.offsetTop - navHeight + 33;
+  window.scrollTo({
+    top: scrollValue,
+    left: 0,
+    behavior: "smooth",
+  });
+}
+
+function selectedBtn(parentClass, childClass) {
+  const parent = document.querySelector(parentClass);
+  parent.addEventListener("click", (e) => {
+    const selected = document.querySelector(childClass + ".selected");
+    if (e.target.nodeName === "BUTTON" || e.target.parentNode === "BUTTON") {
+      const target =
+        e.target.nodeName === "BUTTON" ? e.target : e.target.parentNode;
+      target.classList.add("selected");
+    } else {
+      e.target.classList.add("selected");
+    }
+    selected.classList.remove("selected");
+  });
+}
