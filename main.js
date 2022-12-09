@@ -48,18 +48,18 @@ const about = document.querySelector(".about__container");
 const aboutTop = about.getBoundingClientRect().top;
 document.addEventListener("scroll", () => {
   home.style.opacity =
-    1 - window.scrollY / aboutTop >= 0 ? 1 - window.scrollY / aboutTop : 0;
+    1 - window.scrollY / aboutTop >= 0 ? 1.15 - window.scrollY / aboutTop : 0;
 });
 document.addEventListener("scroll", () => {
   homeContactBtn.style.opacity =
-    1 - window.scrollY / aboutTop >= 0 ? 1 - window.scrollY / aboutTop : 0;
+    1 - window.scrollY / aboutTop >= 0 ? 1.15 - window.scrollY / aboutTop : 0;
 });
 homeContactBtn.addEventListener("mouseover", () => {
   homeContactBtn.style.opacity = 1;
 });
 homeContactBtn.addEventListener("mouseout", () => {
   homeContactBtn.style.opacity =
-    1 - window.scrollY / aboutTop >= 0 ? 1 - window.scrollY / aboutTop : 0;
+    1 - window.scrollY / aboutTop >= 0 ? 1.15 - window.scrollY / aboutTop : 0;
 });
 
 // Arrow-up button on Navbar
@@ -129,27 +129,6 @@ const workTop = document.querySelector("#work").offsetTop;
 const testimonialsTop = document.querySelector("#testimonials").offsetTop;
 const contactTop = document.querySelector("#contact").offsetTop;
 
-// const topData = [
-//   homeTop,
-//   aboutTop1,
-//   skillsTop,
-//   workTop,
-//   testimonialsTop,
-//   contactTop,
-// ];
-
-// document.addEventListener("scroll", () => {
-//   for (let i = 0; i <= topData.length; i++) {
-//     if (window.scrollY === topData[i]) {
-//       console.log("높이" + topData[i]);
-//     }
-//   }
-//   // const selectedNav = document.querySelector(
-//   //   ".navbar__menu__item.selected"
-//   // );
-//   // selectedNav.classList.remove("selected")
-// });
-
 const selectedNav = document.querySelector(".navbar__menu__item.selected");
 const homeBtn = navbarMenu.childNodes.item(1);
 selectedNav.classList.remove("selected");
@@ -182,3 +161,62 @@ function selectedBtn(parentClass, childClass) {
     selected.classList.remove("selected");
   });
 }
+
+const sectionIds = [
+  "#home",
+  "#about",
+  "#skills",
+  "#work",
+  "#testimonials",
+  "#contact",
+];
+
+const sections = sectionIds.map((id) => document.querySelector(id));
+const navItems = sectionIds.map((id) =>
+  document.querySelector(`[data-link="${id}"]`)
+);
+
+let selectedNavIndex = 0;
+let selectedNavItem = navItems[0];
+
+function selectNavItem(selected) {
+  selectedNavItem.classList.remove("selected");
+  selectedNavItem = selected;
+  selectedNavItem.classList.add("selected");
+}
+
+const observerOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.3,
+};
+
+const observerCallback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting && entry.intersectionRatio > 0) {
+      const index = sectionIds.indexOf(`#${entry.target.id}`);
+      if (entry.boundingClientRect.y < 0) {
+        selectedNavIndex = index + 1;
+      } else {
+        selectedNavIndex = index - 1;
+      }
+    }
+  });
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+sections.forEach((section) => {
+  observer.observe(section);
+});
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY === 0) {
+    selectedNavIndex = 0;
+  } else if (
+    Math.round(window.scrollY + window.innerHeight) >=
+    document.body.clientHeight
+  ) {
+    selectedNavIndex = navItems.length - 1;
+  }
+  selectNavItem(navItems[selectedNavIndex]);
+});
